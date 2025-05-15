@@ -5,6 +5,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './auth/user.model';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { WebhookModule } from './webhook/webhook.module';
 
 
 
@@ -16,6 +17,7 @@ import { AuthModule } from './auth/auth.module';
       envFilePath: ['.env'],
     }),
     AuthModule,
+    WebhookModule,
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
