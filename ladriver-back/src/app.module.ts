@@ -6,6 +6,7 @@ import { User } from './auth/user.model';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { WebhookModule } from './webhook/webhook.module';
+import { PaymentsModule } from './payments/payments.module';
 
 
 
@@ -18,6 +19,7 @@ import { WebhookModule } from './webhook/webhook.module';
     }),
     AuthModule,
     WebhookModule,
+    PaymentsModule,
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
