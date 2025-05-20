@@ -6,7 +6,8 @@ import { User } from './auth/user.model';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { WebhookModule } from './webhook/webhook.module';
-
+import { chat } from './chat/chat.model';
+import { chatmodule } from './chat/chat.module';
 
 
 
@@ -18,6 +19,7 @@ import { WebhookModule } from './webhook/webhook.module';
     }),
     AuthModule,
     WebhookModule,
+    chatmodule,
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -28,7 +30,10 @@ import { WebhookModule } from './webhook/webhook.module';
         username: configService.get<string>('DB_USER'),
         password: configService.get<string>('DB_PASS'),
         database: configService.get<string>('DB_NAME'),
-        models: [User],
+        models: [User, chat],
+        define: {
+          timestamps: false,
+        },
         autoLoadModels: true,
         synchronize: true
       })
