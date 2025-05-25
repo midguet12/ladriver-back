@@ -35,6 +35,11 @@ export class AuthController {
         return await this.authServices.checkIfUserExistsRequest(body.username);
     }
 
+    @Get('exists/:username')
+    async checkIfUserExistsWithParam(@Param() params: {username: string}) : Promise<any>{
+        return await this.authServices.checkIfUserExistsRequest(params.username);
+    }
+
     @Post('sessionkey')
     async checkSessionKey(@Body() body: {sessionKey: string}) : Promise<any>{
         return await this.authServices.checkSessionKey(body.sessionKey);

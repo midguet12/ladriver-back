@@ -16,15 +16,19 @@ export class PaymentsController {
         return this.paymentService.createSuscription(body.email, res);
     }
 
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        // Return a single payment by id (mock)
-        return { id, amount: 100 };
+    @Get('validatesuscription/:preapproval_id')
+    validateSuscription(@Param('preapproval_id') preapproval_id: string){
+        return this.paymentService.validateSuscription(preapproval_id);
     }
 
-    @Post()
-    create(@Body() createPaymentDto: any) {
-        // Create a new payment (mock)
-        return { id: 2, ...createPaymentDto };
+    
+    @Post('createSuscription')
+    createSuscription(@Body() body: { preapproval_id: string, username: string }) {
+        return this.paymentService.saveSuscription(body.preapproval_id, body.username);
+    }
+
+    @Get('validateusersuscription/:username')
+    getSuscription(@Param('username') username: string) {
+        return this.paymentService.getSuscription(username);
     }
 }
